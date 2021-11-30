@@ -10,7 +10,7 @@ interface ComicsState {
   error: boolean;
   finished: boolean;
 }
-interface Comic {
+export interface Comic {
   id: string;
   thumbnail: {
     path: string;
@@ -60,9 +60,9 @@ export const fetchComics = (): AppThunk => async (dispatch) => {
     dispatch(setError());
     return;
   }
-  lastVisible += comics.length;
-  if (comics.length < 20) {
+  lastVisible += comics ? comics.length : 0;
+  if (!comics || comics.length < 20) {
     dispatch(setFinished());
   }
-  dispatch(addComics(comics));
+  if (comics) dispatch(addComics(comics));
 };
