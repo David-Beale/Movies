@@ -3,11 +3,13 @@ import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import comics from "./comics";
+import details from "./details";
 import favourites from "./favourites";
 
 export const store = configureStore({
   reducer: {
     comics,
+    details,
     favourites,
   },
 });

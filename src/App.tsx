@@ -1,5 +1,6 @@
 import "./App.css";
 import ContentGrid from "./Components/Content/ContentGrid";
+import DetailsDialog from "./Components/DetailsDialog/DetailsDialog";
 import Error from "./Components/Error/Error";
 import FavouritesPanel from "./Components/Favourites Panel/FavouritesPanel";
 import Header from "./Components/Header/Header";
@@ -12,6 +13,7 @@ export default function App() {
       <Header />
       {!error ? <ContentGrid /> : <Error />}
       <FavouritesPanel />
+      <DetailsDialog />
     </>
   );
 }

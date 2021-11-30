@@ -1,3 +1,4 @@
+import { SyntheticEvent } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { selectComicById } from "../../../../../redux/comics";
 import {
@@ -8,6 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { Button, CardContainer, Image, Title } from "./CardStyle";
 import { useTilt } from "./useTilt";
+import { setDetailsId } from "../../../../../redux/details";
 
 interface IProps {
   comicId: EntityId;
@@ -24,8 +26,23 @@ export default function Card({ comicId, style }: IProps) {
 
   const tiltRef = useTilt();
 
-  const onClick = () => {
+  const onCardClick = () => {
+    if (!comic || !tiltRef.current) return;
+    const rect = tiltRef.current.getBoundingClientRect();
+    const midHorizontal = rect.left + rect.width / 2;
+    const midVertical = rect.top + rect.height / 2;
+
+    dispatch(
+      setDetailsId({
+        id: comic.id,
+        position: `${midHorizontal}px ${midVertical}px`,
+      })
+    );
+  };
+
+  const onFavouriteClick = (e: SyntheticEvent) => {
     if (!comic) return;
+    e.stopPropagation();
     if (favourite) dispatch(removeFavourite(comicId));
     else {
       const payload = {
@@ -37,7 +54,12 @@ export default function Card({ comicId, style }: IProps) {
   };
   if (!comic) return null;
   return (
-    <CardContainer top={style.top} left={style.left} ref={tiltRef}>
+    <CardContainer
+      top={style.top}
+      left={style.left}
+      ref={tiltRef}
+      onClick={onCardClick}
+    >
       {comic.thumbnail && comic.thumbnail.path && (
         <Image
           src={`${comic.thumbnail.path}/portrait_uncanny.jpg`}
@@ -45,7 +67,7 @@ export default function Card({ comicId, style }: IProps) {
         />
       )}
       <Title>{comic.title}</Title>
-      <Button onClick={onClick} favourite={favourite}></Button>
+      <Button onClick={onFavouriteClick} favourite={favourite}></Button>
     </CardContainer>
   );
 }
