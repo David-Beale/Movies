@@ -24,7 +24,7 @@ export const SiteHeading = styled.div`
     font-size: 36px;
   }
 `;
-export const Button = styled.button`
+export const Button = styled.div`
   position: absolute;
   top: 14px;
   left: 10px;
@@ -37,4 +37,5 @@ export const Button = styled.button`
   transform: rotate(${({ open }) => (open ? 360 : 0)}deg);
   transition: all 0.75s;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 `;
