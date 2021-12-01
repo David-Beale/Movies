@@ -16,6 +16,20 @@ export interface Comic {
     path: string;
   };
   title: string;
+  dates: {
+    date: string;
+    type: string;
+  }[];
+  prices: {
+    price: string;
+    type: string;
+  }[];
+  creators: {
+    items: {
+      name: string;
+      role: string;
+    }[];
+  };
 }
 
 const comicsAdapter = createEntityAdapter<Comic>();

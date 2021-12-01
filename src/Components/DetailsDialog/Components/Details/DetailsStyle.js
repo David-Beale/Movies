@@ -1,0 +1,46 @@
+import styled from "styled-components";
+
+export const DetailsContainer = styled.div`
+  height: ${({ dimensions }) => dimensions.height}px;
+  width: ${({ dimensions }) => dimensions.width}px;
+  padding: 25px;
+  padding-right: 0;
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  @media only screen and (max-width: 700px) {
+    overflow: auto;
+    flex-direction: column;
+    height: calc(100vh - 15px);
+    width: calc(100vw - 15px);
+  }
+`;
+
+export const Image = styled.img`
+  width: 50%;
+`;
+
+export const RightContainer = styled.div`
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  overflow: auto;
+  @media only screen and (max-width: 700px) {
+    overflow: unset;
+    width: 100%;
+    padding: 25px;
+  }
+`;
+export const Title = styled.div`
+  font-size: 2rem;
+  font-weight: 600;
+`;
+export const Heading = styled.div`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+`;
+export const Published = styled.div``;

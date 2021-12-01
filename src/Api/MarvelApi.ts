@@ -1,3 +1,4 @@
+import { EntityId } from "@reduxjs/toolkit";
 import { Comic } from "../redux/comics";
 
 interface ComicsResult {

@@ -5,7 +5,8 @@ import Zoom from "@mui/material/Zoom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { clearDetailsId } from "../../redux/details";
 import { TransitionProps } from "@mui/material/transitions";
-import Details from "./Components/Details";
+import Details from "./Components/Details/Details";
+import PaperComponent from "./Components/Paper/PaperComponent";
 
 const Transition = forwardRef(function Transition(props, ref) {
   const detailsOrigin = useAppSelector(({ details }) => details.position);
@@ -35,6 +36,7 @@ export default function DetailsDialog() {
       TransitionComponent={Transition}
       onClose={onClose}
       maxWidth={false}
+      PaperComponent={PaperComponent}
     >
       <Details comicId={comicId} />
     </Dialog>
