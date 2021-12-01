@@ -39,7 +39,7 @@ export const Title = styled.div`
   font-weight: 600;
 `;
 export const Heading = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
