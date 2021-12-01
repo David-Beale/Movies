@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <HeaderContainer>
-      <SiteHeading>Marvel Comics</SiteHeading>
+      <SiteHeading>The Movie Database</SiteHeading>
       <Button onClick={onClick} open={open} />
     </HeaderContainer>
   );

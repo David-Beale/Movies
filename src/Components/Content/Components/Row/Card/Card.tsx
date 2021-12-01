@@ -55,9 +55,9 @@ export default function Card({ comicId, style }: IProps) {
   if (!comic) return null;
   return (
     <CardContainer
+      ref={tiltRef}
       top={style.top}
       left={style.left}
-      ref={tiltRef}
       onClick={onCardClick}
     >
       {comic.thumbnail && comic.thumbnail.path && (
@@ -67,7 +67,7 @@ export default function Card({ comicId, style }: IProps) {
         />
       )}
       <Title>{comic.title}</Title>
-      <Button onClick={onFavouriteClick} favourite={favourite}></Button>
+      <Button onClick={onFavouriteClick} favourite={!!favourite}></Button>
     </CardContainer>
   );
 }

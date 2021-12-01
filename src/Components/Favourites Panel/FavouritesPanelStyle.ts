@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const FavouritesPanelContainer = styled.div`
+interface Props {
+  f: {
+    open: boolean;
+  };
+}
+
+export const FavouritesPanelContainer = styled.div<Props["f"]>`
   position: fixed;
   z-index: 4;
   top: 64px;
@@ -15,5 +21,5 @@ export const FavouritesPanelContainer = styled.div`
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   border-right: 1px solid rgb(204, 204, 204);
-  box-shadow: 13px 0px 20px rgb(223, 206, 209);
+  box-shadow: 13px 0px 20px ${({ theme }) => theme.primaryShadow};
 `;

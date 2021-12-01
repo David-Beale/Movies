@@ -5,8 +5,7 @@ import {
   selectFavouriteById,
 } from "../../../../../redux/favourites";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
-import { Title } from "../../../../Content/Components/Row/Card/CardStyle";
-import { FavouriteContainer, RemoveButton } from "./FavouriteStyle";
+import { FavouriteContainer, RemoveButton, Title } from "./FavouriteStyle";
 import { setDetailsId } from "../../../../../redux/details";
 
 interface IProps {

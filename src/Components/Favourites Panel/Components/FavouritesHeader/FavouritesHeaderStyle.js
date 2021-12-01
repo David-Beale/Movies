@@ -14,6 +14,6 @@ export const Title = styled.h2`
   text-transform: uppercase;
   font-weight: 400;
   margin: 0;
-  color: #ec1d24;
+  color: ${({ theme }) => theme.primary};
   font-weight: 700;
 `;

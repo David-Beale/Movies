@@ -2,12 +2,25 @@ import styled from "styled-components";
 import star from "../../../../../Assets/images/star.svg";
 import redStar from "../../../../../Assets/images/redStar.svg";
 
-export const CardContainer = styled.div.attrs((props) => ({
-  style: {
-    left: `${props.left}px`,
-    top: `${props.top}px`,
-  },
-}))`
+interface Props {
+  CardContainer: {
+    left: number;
+    top: number;
+    ref: any;
+  };
+  Button: {
+    favourite: boolean;
+  };
+}
+
+export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
+  (props) => ({
+    style: {
+      left: `${props.left}px`,
+      top: `${props.top}px`,
+    },
+  })
+)<Props["CardContainer"]>`
   position: absolute;
   height: 540px;
   width: 300px;
@@ -18,7 +31,8 @@ export const CardContainer = styled.div.attrs((props) => ({
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  box-shadow: 13px 13px 20px rgb(223 206 209), -13px -13px 20px rgb(255 255 255);
+  box-shadow: 13px 13px 20px ${({ theme }) => theme.primaryShadow},
+    -13px -13px 20px rgb(255 255 255);
   z-index: 1;
   transform-style: preserve-3d;
   transform: perspective(1000px);
@@ -26,7 +40,7 @@ export const CardContainer = styled.div.attrs((props) => ({
     margin: 25px;
     &:hover {
       z-index: 2;
-      box-shadow: 13px 13px 40px rgb(223 206 209),
+      box-shadow: 13px 13px 40px ${({ theme }) => theme.primaryShadow},
         -13px -13px 40px rgb(255 255 255);
     }
   }
@@ -52,7 +66,7 @@ export const Title = styled.div`
   user-select: none;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<Props["Button"]>`
   position: absolute;
   top: 15px;
   right: 15px;

@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export const LoadingContainer = styled.div.attrs((props) => ({
-  style: {
-    left: `${props.left}px`,
-    top: `${props.top}px`,
-  },
-}))`
+interface Props {
+  LoadingContainer: {
+    left: number;
+    top: number;
+  };
+}
+
+export const LoadingContainer = styled.div.attrs<Props["LoadingContainer"]>(
+  (props) => ({
+    style: {
+      left: `${props.left}px`,
+      top: `${props.top}px`,
+    },
+  })
+)<Props["LoadingContainer"]>`
   position: absolute;
   width: 100%;
   height: 590px;

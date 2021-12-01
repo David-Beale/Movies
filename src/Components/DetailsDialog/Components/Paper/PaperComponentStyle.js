@@ -5,8 +5,8 @@ export const PaperContainer = styled.div`
   margin: 0;
   background: linear-gradient(
     to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.4)
+    rgba(0, 10, 30, 0.8),
+    rgba(0, 10, 30, 0.6)
   );
   backdrop-filter: blur(1rem);
   background-color: transparent;

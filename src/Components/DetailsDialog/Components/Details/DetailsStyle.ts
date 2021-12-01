@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const DetailsContainer = styled.div`
+interface Props {
+  DetailsContainer: {
+    dimensions: { height: number; width: number };
+  };
+}
+
+export const DetailsContainer = styled.div<Props["DetailsContainer"]>`
   height: ${({ dimensions }) => dimensions.height}px;
   width: ${({ dimensions }) => dimensions.width}px;
   padding: 25px;
@@ -37,11 +43,15 @@ export const RightContainer = styled.div`
 export const Title = styled.div`
   font-size: 2rem;
   font-weight: 600;
+  color: white;
 `;
 export const Heading = styled.div`
   font-size: 1.2rem;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
+  color: white;
 `;
-export const Published = styled.div``;
+export const Published = styled.div`
+  color: white;
+`;
