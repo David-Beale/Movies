@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import remove from "../../../../../Assets/images/removeWhite.svg";
+import remove from "../../../../../../Assets/images/removeWhite.svg";
 
 export const Button = styled.button`
   position: absolute;

@@ -9,8 +9,6 @@ interface Props {
 export const DetailsContainer = styled.div<Props["DetailsContainer"]>`
   height: ${({ dimensions }) => dimensions.height}px;
   width: ${({ dimensions }) => dimensions.width}px;
-  padding: 25px;
-  padding-right: 0;
   display: flex;
   background-color: transparent;
   align-items: center;
@@ -19,20 +17,20 @@ export const DetailsContainer = styled.div<Props["DetailsContainer"]>`
     flex-direction: column;
     height: calc(100vh - 15px);
     width: calc(100vw - 15px);
-    padding-right: 25px;
+    padding-top: 25px;
   }
 `;
 
 export const Image = styled.img`
-  width: calc(50% - 12.5px);
+  width: 50%;
 `;
 
 export const RightContainer = styled.div`
   height: 100%;
-  width: calc(50% + 12.5px);
+  width: 50%;
   display: flex;
   flex-direction: column;
-  padding: 0 50px;
+  padding: 25px 50px;
   overflow: auto;
   @media only screen and (max-width: 700px) {
     overflow: unset;
@@ -52,6 +50,11 @@ export const Heading = styled.div`
   margin-bottom: 0.5rem;
   color: white;
 `;
-export const Published = styled.div`
+export const Content = styled.div`
   color: white;
+`;
+export const GenreContainer = styled.div`
+  margin-top: 35px;
+  display: flex;
+  flex-wrap: wrap;
 `;

@@ -32,7 +32,7 @@ const initialState: MoviesState = {
 };
 
 const movies = createSlice({
-  name: "movies",
+  name: "genres",
   initialState: moviesAdapter.getInitialState(initialState),
   reducers: {
     addMovies(state, action: PayloadAction<Movie[]>) {
@@ -57,13 +57,14 @@ export default movies.reducer;
 export const fetchMovies = (): AppThunk => async (dispatch) => {
   if (loading) return;
   loading = true;
-  const { movies, error } = await MovieApi.fetchMovies(page);
+  const { body, error } = await MovieApi.fetchMovies(page);
   loading = false;
   if (error) {
     dispatch(setError());
     return;
   }
   page++;
+  const movies = body.results;
   if (!movies || movies.length < 20) {
     dispatch(setFinished());
   }

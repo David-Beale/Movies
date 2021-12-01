@@ -1,17 +1,19 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { selectMovieById } from "../../../../redux/movies";
 import { useAppSelector } from "../../../../redux/hooks";
-import CloseButton from "./Components/CloseButton";
+import CloseButton from "./Components/CloseButton/CloseButton";
 import {
   DetailsContainer,
   Heading,
   Image,
-  Published,
+  Content,
   RightContainer,
   Title,
+  GenreContainer,
 } from "./DetailsStyle";
+import GenreTag from "./Components/GenreTag/GenreTag";
 
 interface IProps {
   movieId: EntityId;
@@ -41,24 +43,31 @@ export default function Details({ movieId }: IProps) {
 
   return (
     <DetailsContainer dimensions={dimensions}>
-      {/* {movie && (
+      {movie && (
         <>
           <Image
-            src={`${movie.thumbnail?.path}/portrait_uncanny.jpg`}
+            src={`https://image.tmdb.org/t/p/${"w780"}/${movie.poster_path}`}
             alt={`${movie.title} image`}
           />
 
           <RightContainer>
             <Title>{movie.title}</Title>
-            <Heading>Published:</Heading>
-            <Published>{date}</Published>
-            <Heading>Writer{writers && writers.length > 1 && "s"}:</Heading>
-            <Published>{writers && writers.join(", ")}</Published>
-            <Heading>Price:</Heading>
-            <Published>${price}</Published>
+            <Heading>Released</Heading>
+            <Content>
+              {moment(movie.release_date).format("MMMM Do YYYY")}
+            </Content>
+            <Heading>Summary</Heading>
+            <Content>{movie.overview}</Content>
+            <Heading>Rating</Heading>
+            <Content>{movie.vote_average}</Content>
+            <GenreContainer>
+              {movie.genre_ids.map((genreId) => (
+                <GenreTag key={genreId} genreId={genreId} />
+              ))}
+            </GenreContainer>
           </RightContainer>
         </>
-      )} */}
+      )}
 
       <CloseButton />
     </DetailsContainer>

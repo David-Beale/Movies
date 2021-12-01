@@ -5,12 +5,14 @@ import { ThunkAction } from "redux-thunk";
 import movies from "./movies";
 import details from "./details";
 import favourites from "./favourites";
+import genres from "./genres";
 
 export const store = configureStore({
   reducer: {
     movies,
     details,
     favourites,
+    genres,
   },
 });
 

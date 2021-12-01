@@ -1,5 +1,5 @@
-import { clearDetailsId } from "../../../../../redux/details";
-import { useAppDispatch } from "../../../../../redux/hooks";
+import { clearDetailsId } from "../../../../../../redux/details";
+import { useAppDispatch } from "../../../../../../redux/hooks";
 import { Button } from "./CloseButtonStyle";
 
 export default function CloseButton() {
