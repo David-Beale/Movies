@@ -77,7 +77,7 @@ export const Button = styled.button<Props["Button"]>`
   border-radius: 50%;
   background: url(${({ favourite }) => (favourite ? redStar : star)}) 50% 50%
     no-repeat;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   background-size: 60%;
   cursor: pointer;
   transform: translateZ(20px) translateX(50%);
