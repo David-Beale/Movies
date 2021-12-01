@@ -13,16 +13,17 @@ export const DetailsContainer = styled.div`
     flex-direction: column;
     height: calc(100vh - 15px);
     width: calc(100vw - 15px);
+    padding-right: 25px;
   }
 `;
 
 export const Image = styled.img`
-  width: 50%;
+  width: calc(50% - 12.5px);
 `;
 
 export const RightContainer = styled.div`
   height: 100%;
-  width: 50%;
+  width: calc(50% + 12.5px);
   display: flex;
   flex-direction: column;
   padding: 0 50px;
