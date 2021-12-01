@@ -19,12 +19,12 @@ interface IProps {
 
 export default memo(function ({ data, rowIndex, columnIndex, style }: IProps) {
   const { items, columns } = data;
-  const comicId = items[rowIndex * columns + columnIndex];
-  if (!comicId) {
+  const movieId = items[rowIndex * columns + columnIndex];
+  if (!movieId) {
     if (columnIndex === 0) {
       return <Loading style={style} />;
     }
     return null;
   }
-  return <Card key={comicId} comicId={comicId} style={style} />;
+  return <Card key={movieId} movieId={movieId} style={style} />;
 }, areEqual) as ComponentType<GridChildComponentProps>;

@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import comics from "./comics";
+import movies from "./movies";
 import details from "./details";
 import favourites from "./favourites";
 
 export const store = configureStore({
   reducer: {
-    comics,
+    movies,
     details,
     favourites,
   },

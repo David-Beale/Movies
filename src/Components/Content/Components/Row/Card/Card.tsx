@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react";
 import { EntityId } from "@reduxjs/toolkit";
-import { selectComicById } from "../../../../../redux/comics";
+import { selectMovieById } from "../../../../../redux/movies";
 import {
   addFavourite,
   removeFavourite,
@@ -12,47 +12,47 @@ import { useTilt } from "./useTilt";
 import { setDetailsId } from "../../../../../redux/details";
 
 interface IProps {
-  comicId: EntityId;
+  movieId: EntityId;
   style: { top: number; left: number };
 }
 
-export default function Card({ comicId, style }: IProps) {
+export default function Card({ movieId, style }: IProps) {
   const dispatch = useAppDispatch();
 
-  const comic = useAppSelector((state) => selectComicById(state, comicId));
+  const movie = useAppSelector((state) => selectMovieById(state, movieId));
   const favourite = useAppSelector((state) =>
-    selectFavouriteById(state, comicId)
+    selectFavouriteById(state, movieId)
   );
 
   const tiltRef = useTilt();
 
   const onCardClick = () => {
-    if (!comic || !tiltRef.current) return;
+    if (!movie || !tiltRef.current) return;
     const rect = tiltRef.current.getBoundingClientRect();
     const midHorizontal = rect.left + rect.width / 2;
     const midVertical = rect.top + rect.height / 2;
 
     dispatch(
       setDetailsId({
-        id: comic.id,
+        id: movie.id,
         position: `${midHorizontal}px ${midVertical}px`,
       })
     );
   };
 
   const onFavouriteClick = (e: SyntheticEvent) => {
-    if (!comic) return;
+    if (!movie) return;
     e.stopPropagation();
-    if (favourite) dispatch(removeFavourite(comicId));
+    if (favourite) dispatch(removeFavourite(movieId));
     else {
       const payload = {
-        id: comic.id,
-        title: comic.title,
+        id: movie.id,
+        title: movie.title,
       };
       dispatch(addFavourite(payload));
     }
   };
-  if (!comic) return null;
+  if (!movie) return null;
   return (
     <CardContainer
       ref={tiltRef}
@@ -60,13 +60,11 @@ export default function Card({ comicId, style }: IProps) {
       left={style.left}
       onClick={onCardClick}
     >
-      {comic.thumbnail && comic.thumbnail.path && (
-        <Image
-          src={`${comic.thumbnail.path}/portrait_uncanny.jpg`}
-          alt={`${comic.title} image`}
-        />
-      )}
-      <Title>{comic.title}</Title>
+      <Image
+        src={`https://image.tmdb.org/t/p/${"w300"}/${movie.backdrop_path}`}
+        alt={`${movie.title} image`}
+      />
+      <Title>{movie.title}</Title>
       <Button onClick={onFavouriteClick} favourite={!!favourite}></Button>
     </CardContainer>
   );

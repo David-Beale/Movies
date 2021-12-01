@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { fetchComics } from "../../../redux/comics";
+import { fetchMovies } from "../../../redux/movies";
 import { useAppDispatch } from "../../../redux/hooks";
 
 interface IProps {
@@ -17,7 +17,7 @@ export const useVirtualiser = ({ colCount, length, hasNextPage }: IProps) => {
   const dispatch = useAppDispatch();
 
   const loadMoreItems = useCallback(() => {
-    dispatch(fetchComics());
+    dispatch(fetchMovies());
   }, [dispatch]);
 
   const isItemLoaded = useCallback(

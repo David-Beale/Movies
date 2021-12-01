@@ -7,7 +7,7 @@ import Header from "./Components/Header/Header";
 import { useAppSelector } from "./redux/hooks";
 
 export default function App() {
-  const error = useAppSelector(({ comics }) => comics.error);
+  const error = useAppSelector(({ movies }) => movies.error);
   return (
     <>
       <Header />

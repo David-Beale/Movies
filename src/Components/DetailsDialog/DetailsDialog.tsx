@@ -24,7 +24,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 export default function DetailsDialog() {
   const dispatch = useAppDispatch();
-  const comicId = useAppSelector(({ details }) => details.id);
+  const movieId = useAppSelector(({ details }) => details.id);
 
   const onClose = () => {
     dispatch(clearDetailsId());
@@ -32,13 +32,13 @@ export default function DetailsDialog() {
 
   return (
     <Dialog
-      open={comicId > 0}
+      open={movieId > 0}
       TransitionComponent={Transition}
       onClose={onClose}
       maxWidth={false}
       PaperComponent={PaperComponent}
     >
-      <Details comicId={comicId} />
+      <Details movieId={movieId} />
     </Dialog>
   );
 }

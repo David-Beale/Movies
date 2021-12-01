@@ -22,7 +22,7 @@ export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
   })
 )<Props["CardContainer"]>`
   position: absolute;
-  height: 540px;
+  height: 300px;
   width: 300px;
   background: rgb(236, 240, 243);
   border-radius: 25px;
@@ -47,6 +47,7 @@ export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
 `;
 
 export const Image = styled.img`
+  min-height: 169px;
   width: 100%;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -68,8 +69,8 @@ export const Title = styled.div`
 
 export const Button = styled.button<Props["Button"]>`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  bottom: 15px;
+  right: 50%;
   width: 36px;
   height: 36px;
   border: 1px solid #fff;
@@ -79,14 +80,13 @@ export const Button = styled.button<Props["Button"]>`
   background-color: rgba(0, 0, 0, 0.2);
   background-size: 60%;
   cursor: pointer;
-  transform: translateZ(20px);
+  transform: translateZ(20px) translateX(50%);
   @media only screen and (min-width: 480px) {
     &:hover {
-      background-color: rgba(236, 29, 36, 0.3);
       background-color: rgba(
-        236,
-        29,
-        36,
+        1,
+        118,
+        228,
         ${({ favourite }) => (favourite ? "0.3" : "0.7")}
       );
     }
