@@ -9,6 +9,7 @@ export class MarvelApi {
     const base = "https://gateway.marvel.com/v1/public/comics?";
     const parameters = {
       apikey: "cbb4d7cc23d84e48f845f3a4dc0ea39b",
+      dateRange: "1900-01-01, 2021-12-01",
       offset,
     };
     const url =
