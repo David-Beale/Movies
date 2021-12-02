@@ -53,6 +53,7 @@ const movies = createSlice({
       state.finished = true;
     },
     clearMovies(state) {
+      state.finished = false;
       moviesAdapter.removeAll(state);
     },
   },
