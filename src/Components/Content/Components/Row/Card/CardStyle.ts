@@ -36,6 +36,7 @@ export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
   z-index: 1;
   transform-style: preserve-3d;
   transform: perspective(1000px);
+  cursor: pointer;
   @media only screen and (min-width: 480px) {
     margin: 25px;
     &:hover {

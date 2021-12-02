@@ -1,3 +1,5 @@
+import { EntityId } from "@reduxjs/toolkit";
+
 interface Result {
   error?: boolean;
   body?: any;
@@ -39,6 +41,11 @@ export class MovieApi {
 
   static fetchGenreList = () => {
     const path = "genre/movie/list?";
+    return this.get(path);
+  };
+
+  static fetchCast = (movieId: EntityId) => {
+    const path = `/movie/${movieId}/credits?`;
     return this.get(path);
   };
 }

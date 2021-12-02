@@ -1,5 +1,4 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { useState, useEffect } from "react";
 import moment from "moment";
 import { selectMovieById } from "../../../../redux/movies";
 import { useAppSelector } from "../../../../redux/hooks";
@@ -11,9 +10,11 @@ import {
   Content,
   RightContainer,
   Title,
-  GenreContainer,
 } from "./DetailsStyle";
-import GenreTag from "./Components/GenreTag/GenreTag";
+import RatingComponent from "./Components/Rating/Rating";
+import Genres from "./Components/Genres/Genres";
+import { useDimensions } from "./hooks/useDimensions";
+import Cast from "./Components/Cast/Cast";
 
 interface IProps {
   movieId: EntityId;
@@ -21,25 +22,7 @@ interface IProps {
 export default function Details({ movieId }: IProps) {
   const movie = useAppSelector((state) => selectMovieById(state, movieId));
 
-  const [dimensions, setDimensions] = useState({ height: 0, width: 0 });
-
-  useEffect(() => {
-    const onResize = () => {
-      const maxHeight = window.innerHeight - 50;
-      const maxWidth = window.innerWidth - 50;
-      const ratio = maxWidth / maxHeight;
-      if (ratio < 1.34) {
-        setDimensions({ height: (maxWidth * 3) / 4, width: maxWidth });
-      } else {
-        setDimensions({ height: maxHeight, width: (maxHeight * 4) / 3 });
-      }
-    };
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
+  const dimensions = useDimensions();
 
   return (
     <DetailsContainer dimensions={dimensions}>
@@ -58,13 +41,10 @@ export default function Details({ movieId }: IProps) {
             </Content>
             <Heading>Summary</Heading>
             <Content>{movie.overview}</Content>
-            <Heading>Rating</Heading>
-            <Content>{movie.vote_average}</Content>
-            <GenreContainer>
-              {movie.genre_ids.map((genreId) => (
-                <GenreTag key={genreId} genreId={genreId} />
-              ))}
-            </GenreContainer>
+
+            <RatingComponent rating={movie.vote_average / 2} />
+            <Cast movieId={movieId} />
+            <Genres genres={movie.genre_ids} />
           </RightContainer>
         </>
       )}
