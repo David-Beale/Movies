@@ -48,8 +48,8 @@ export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
 `;
 
 export const Image = styled.img`
-  min-height: 169px;
-  width: 100%;
+  max-height: 169px;
+  max-width: 300px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 `;
