@@ -45,7 +45,12 @@ export class MovieApi {
   };
 
   static fetchCast = (movieId: EntityId) => {
-    const path = `/movie/${movieId}/credits?`;
+    const path = `movie/${movieId}/credits?`;
     return this.get(path);
+  };
+  static fetchSearch = (query: string, page: number) => {
+    const path = `search/movie?`;
+    const parameters = { query, page };
+    return this.get(path, parameters);
   };
 }

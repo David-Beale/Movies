@@ -1,6 +1,7 @@
 import { toggleOpen } from "../../redux/favourites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { Button, HeaderContainer, SiteHeading } from "./HeaderStyle";
+import { Button, HeaderContainer } from "./HeaderStyle";
+import Search from "./Search/Search";
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -12,7 +13,7 @@ export default function Header() {
 
   return (
     <HeaderContainer>
-      <SiteHeading>The Movie Database</SiteHeading>
+      <Search />
       <Button onClick={onClick} open={open} />
     </HeaderContainer>
   );

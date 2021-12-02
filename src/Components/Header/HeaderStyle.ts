@@ -19,19 +19,7 @@ export const HeaderContainer = styled.header`
   z-index: 3;
   background-color: #ecf0f3;
 `;
-export const SiteHeading = styled.div`
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: -1px -1px 5px ${({ theme }) => theme.primary},
-    1px -1px 5px ${({ theme }) => theme.primary},
-    -1px 1px 5px ${({ theme }) => theme.primary},
-    1px 1px 5px ${({ theme }) => theme.primary};
-  font-size: 21px;
-  letter-spacing: 2px;
-  @media only screen and (min-width: 480px) {
-    font-size: 36px;
-  }
-`;
+
 export const Button = styled.div<Props["button"]>`
   position: absolute;
   top: 14px;
