@@ -7,6 +7,7 @@ interface Props {
 }
 
 export const DetailsContainer = styled.div<Props["DetailsContainer"]>`
+  position: relative;
   height: ${({ dimensions }) => dimensions.height}px;
   width: ${({ dimensions }) => dimensions.width}px;
   display: flex;
@@ -19,10 +20,6 @@ export const DetailsContainer = styled.div<Props["DetailsContainer"]>`
     width: calc(100vw - 15px);
     padding-top: 25px;
   }
-`;
-
-export const Image = styled.img`
-  width: 50%;
 `;
 
 export const RightContainer = styled.div`

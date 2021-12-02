@@ -6,7 +6,6 @@ import CloseButton from "./Components/CloseButton/CloseButton";
 import {
   DetailsContainer,
   Heading,
-  Image,
   Content,
   RightContainer,
   Title,
@@ -15,6 +14,7 @@ import RatingComponent from "./Components/Rating/Rating";
 import Genres from "./Components/Genres/Genres";
 import { useDimensions } from "./hooks/useDimensions";
 import Cast from "./Components/Cast/Cast";
+import ImageComponent from "./Components/Image/Image";
 
 interface IProps {
   movieId: EntityId;
@@ -28,14 +28,7 @@ export default function Details({ movieId }: IProps) {
     <DetailsContainer dimensions={dimensions}>
       {movie && (
         <>
-          <Image
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/${"w780"}/${movie.poster_path}`
-                : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
-            }
-            alt={`${movie.title} image`}
-          />
+          <ImageComponent src={movie.poster_path} />
 
           <RightContainer>
             <Title>{movie.title}</Title>

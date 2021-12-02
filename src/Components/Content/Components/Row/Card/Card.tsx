@@ -7,9 +7,10 @@ import {
   selectFavouriteById,
 } from "../../../../../redux/favourites";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
-import { Button, CardContainer, Image, Title } from "./CardStyle";
+import { Button, CardContainer, Title } from "./CardStyle";
 import { useTilt } from "./useTilt";
 import { setDetailsId } from "../../../../../redux/details";
+import ImageComponent from "./Image/Image";
 
 interface IProps {
   movieId: EntityId;
@@ -60,14 +61,7 @@ export default function Card({ movieId, style }: IProps) {
       left={style.left}
       onClick={onCardClick}
     >
-      <Image
-        src={
-          movie.backdrop_path
-            ? `https://image.tmdb.org/t/p/${"w300"}/${movie.backdrop_path}`
-            : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"
-        }
-        alt={`${movie.title} image`}
-      />
+      <ImageComponent src={movie.backdrop_path} />
       <Title>{movie.title}</Title>
       <Button onClick={onFavouriteClick} favourite={!!favourite}></Button>
     </CardContainer>

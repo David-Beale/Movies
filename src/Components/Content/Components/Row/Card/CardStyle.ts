@@ -47,13 +47,6 @@ export const CardContainer = styled.div.attrs<Props["CardContainer"]>(
   }
 `;
 
-export const Image = styled.img`
-  max-height: 169px;
-  max-width: 300px;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-`;
-
 export const Title = styled.div`
   height: 90px;
   display: flex;
