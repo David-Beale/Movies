@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import redStar from "../../Assets/images/redStar.svg";
+import StarIcon from "@mui/icons-material/Star";
 
 interface Props {
   button: {
@@ -20,7 +20,10 @@ export const HeaderContainer = styled.header`
   background-color: #ecf0f3;
 `;
 
-export const Button = styled.div<Props["button"]>`
+export const Button = styled(StarIcon).attrs(() => ({
+  fontSize: "large",
+}))<Props["button"]>`
+  color: ${({ theme }) => theme.primary};
   position: absolute;
   top: 14px;
   left: 10px;
@@ -28,10 +31,8 @@ export const Button = styled.div<Props["button"]>`
   height: 36px;
   border: 3px solid ${({ theme }) => theme.primary};
   border-radius: 50%;
-  background: url(${redStar}) 50% 50% no-repeat;
-  background-size: 60%;
   transform: rotate(${({ open }) => (open ? 360 : 0)}deg);
-  transition: all 0.75s;
+  transition: all 0.75s !important;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 `;

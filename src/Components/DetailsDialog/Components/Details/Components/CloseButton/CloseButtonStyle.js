@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import remove from "../../../../../../Assets/images/removeWhite.svg";
+import CloseIcon from "@mui/icons-material/Close";
 
-export const Button = styled.button`
+export const Button = styled(CloseIcon).attrs(() => ({
+  fontSize: "large",
+}))`
+  cursor: pointer;
+  color: white;
   position: absolute;
-  top: 32px;
+  top: 12px;
   right: 20px;
-  width: 32px;
-  height: 32px;
-  margin-top: -16px;
-  background: url(${remove}) 50% 50% no-repeat;
-  background-size: 75%;
-  border: 0;
 `;

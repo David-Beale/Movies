@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import remove from "../../../../../Assets/images/remove.svg";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   Title: {
@@ -25,14 +25,12 @@ export const Title = styled.div<Props["Title"]>`
   user-select: none;
 `;
 
-export const RemoveButton = styled.button`
+export const RemoveButton = styled(CloseIcon).attrs(() => ({
+  fontSize: "large",
+}))`
+  cursor: pointer;
   position: absolute;
   top: 50%;
   right: 20px;
-  width: 32px;
-  height: 32px;
-  margin-top: -16px;
-  background: url(${remove}) 50% 50% no-repeat;
-  background-size: 50%;
-  border: 0;
+  transform: translateY(-50%);
 `;

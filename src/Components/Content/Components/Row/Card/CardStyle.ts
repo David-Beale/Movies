@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import star from "../../../../../Assets/images/star.svg";
-import redStar from "../../../../../Assets/images/redStar.svg";
+import StarIcon from "@mui/icons-material/Star";
 
 interface Props {
   CardContainer: {
@@ -61,18 +61,17 @@ export const Title = styled.div`
   user-select: none;
 `;
 
-export const Button = styled.button<Props["Button"]>`
+export const Button = styled(StarIcon).attrs(() => ({
+  style: { fontSize: 36 },
+}))<Props["Button"]>`
+  color: ${(props) => (props.favourite ? props.theme.primary : "white")};
   position: absolute;
   bottom: 15px;
   right: 50%;
-  width: 36px;
-  height: 36px;
+  padding: 5px;
   border: 1px solid #fff;
   border-radius: 50%;
-  background: url(${({ favourite }) => (favourite ? redStar : star)}) 50% 50%
-    no-repeat;
   background-color: rgba(0, 0, 0, 0.1);
-  background-size: 60%;
   cursor: pointer;
   transform: translateZ(20px) translateX(50%);
   @media only screen and (min-width: 480px) {
