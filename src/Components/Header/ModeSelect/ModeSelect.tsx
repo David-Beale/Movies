@@ -10,7 +10,11 @@ import {
   StyledUpArrow,
 } from "./ModeSelectStyle";
 
-export default function ModeSelect() {
+export default function ModeSelect({
+  searchActive,
+}: {
+  searchActive: boolean;
+}) {
   const dispatch = useAppDispatch();
   const mode = useAppSelector(({ movies }) => movies.mode);
   const [open, setOpen] = useState(false);
@@ -21,7 +25,7 @@ export default function ModeSelect() {
     dispatch(selectNewMode(newMode));
     setOpen(false);
   };
-  if (mode === Mode.Search) return null;
+  if (searchActive || mode === Mode.Search) return null;
   return (
     <>
       <SelectContainer onClick={() => setOpen(true)} ref={anchor}>

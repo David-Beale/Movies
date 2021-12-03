@@ -28,7 +28,11 @@ export const FavButtonContainer = styled.div`
   box-shadow: 8px 8px 8px ${({ theme }) => theme.topShadow},
     -8px -8px 8px ${({ theme }) => theme.bottomShadow};
   -webkit-tap-highlight-color: transparent;
+  @media (max-width: 500px) {
+    left: 4px;
+  }
 `;
+
 export const FavButton = styled(StarIcon).attrs(() => ({
   style: { fontSize: 45 },
 }))<Props["button"]>`

@@ -9,7 +9,7 @@ import {
 import { useAppDispatch } from "../../../redux/hooks";
 import { Mode, selectNewMode } from "../../../redux/movies";
 
-export default function Search() {
+export default function Search({ searchActive, setSearchActive }) {
   const dispatch = useAppDispatch();
 
   const [searchText, setSearchText] = useState("");
@@ -45,9 +45,27 @@ export default function Search() {
     [requestSearch, dispatch]
   );
 
+  const onFocus = () => {
+    if (window.innerWidth > 500) return;
+    setSearchActive(true);
+  };
+
+  const onBlur = () => {
+    setSearchActive(false);
+  };
+
+  const expanded = useMemo(() => {
+    if (window.innerWidth > 500) return false;
+    if (searchText || searchActive) return true;
+    return false;
+  }, [searchActive, searchText]);
+
   return (
-    <SearchBarContainer>
-      <StyledSearchIcon fontSize="large" />
+    <SearchBarContainer active={expanded}>
+      {!expanded && <StyledSearchIcon fontSize="large" />}
+      {(expanded || searchText) && (
+        <StyledCancelIcon onClick={onCloseSearch} fontSize="large" />
+      )}
       <Input
         type="text"
         id="search"
@@ -55,10 +73,10 @@ export default function Search() {
         value={searchText}
         onChange={onSearchTextChange}
         autoComplete="off"
+        onFocus={onFocus}
+        onBlur={onBlur}
+        active={expanded}
       />
-      {searchText && (
-        <StyledCancelIcon onClick={onCloseSearch} fontSize="large" />
-      )}
     </SearchBarContainer>
   );
 }

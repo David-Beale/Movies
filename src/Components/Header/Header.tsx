@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { toggleOpen } from "../../redux/favourites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FavButton, FavButtonContainer, HeaderContainer } from "./HeaderStyle";
@@ -7,6 +8,7 @@ import Search from "./Search/Search";
 export default function Header() {
   const dispatch = useAppDispatch();
   const open = useAppSelector(({ favourites }) => favourites.open);
+  const [searchActive, setSearchActive] = useState(false);
 
   const onClick = () => {
     dispatch(toggleOpen());
@@ -17,8 +19,8 @@ export default function Header() {
       <FavButtonContainer onClick={onClick}>
         <FavButton open={open} />
       </FavButtonContainer>
-      <Search />
-      <ModeSelect />
+      <Search searchActive={searchActive} setSearchActive={setSearchActive} />
+      <ModeSelect searchActive={searchActive} />
     </HeaderContainer>
   );
 }

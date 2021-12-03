@@ -25,11 +25,20 @@ export const SelectContainer = styled.div<IProps["SelectContainer"]>`
   padding: 16px;
   color: ${({ theme }) => theme.primary};
   font-weight: 600;
+  @media (max-width: 500px) {
+    right: 12px;
+    width: 100px;
+    font-size: 0.75rem;
+    padding: 8px;
+  }
 `;
 
 export const PopoverContents = styled.div`
   width: 140px;
   background-color: rgb(236, 240, 243);
+  @media (max-width: 500px) {
+    width: 100px;
+  }
 `;
 
 export const StyledPopover = styled(Popover).attrs((props) => ({
@@ -55,8 +64,14 @@ export const MenuItem = styled.div`
 export const StyledDownArrow = styled(ArrowDropDownIcon)`
   position: absolute;
   right: 5px;
+  @media (max-width: 500px) {
+    right: 0;
+  }
 `;
 export const StyledUpArrow = styled(ArrowDropUpIcon)`
   position: absolute;
   right: 5px;
+  @media (max-width: 500px) {
+    right: 0;
+  }
 `;
