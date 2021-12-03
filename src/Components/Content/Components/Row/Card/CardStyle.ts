@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import star from "../../../../../Assets/images/star.svg";
 import StarIcon from "@mui/icons-material/Star";
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
     ref: any;
   };
   Button: {
-    favourite: boolean;
+    favourite: number;
   };
 }
 

@@ -63,7 +63,7 @@ export default function Card({ movieId, style }: IProps) {
     >
       <ImageComponent src={movie.backdrop_path} />
       <Title>{movie.title}</Title>
-      <Button onClick={onFavouriteClick} favourite={!!favourite}></Button>
+      <Button onClick={onFavouriteClick} favourite={favourite ? 1 : 0}></Button>
     </CardContainer>
   );
 }
