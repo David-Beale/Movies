@@ -53,4 +53,20 @@ export class MovieApi {
     const parameters = { query, page };
     return this.get(path, parameters);
   };
+
+  static fetchNowPlaying = (page: number) => {
+    const path = "movie/now_playing?";
+    const parameters = { page };
+    return this.get(path, parameters);
+  };
+  static fetchTopRated = (page: number) => {
+    const path = "movie/top_rated?";
+    const parameters = { page };
+    return this.get(path, parameters);
+  };
+  static fetchUpcoming = (page: number) => {
+    const path = "movie/upcoming?";
+    const parameters = { page };
+    return this.get(path, parameters);
+  };
 }

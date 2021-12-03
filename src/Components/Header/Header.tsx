@@ -1,6 +1,7 @@
 import { toggleOpen } from "../../redux/favourites";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { Button, HeaderContainer } from "./HeaderStyle";
+import { FavButton, FavButtonContainer, HeaderContainer } from "./HeaderStyle";
+import ModeSelect from "./ModeSelect/ModeSelect";
 import Search from "./Search/Search";
 
 export default function Header() {
@@ -13,8 +14,11 @@ export default function Header() {
 
   return (
     <HeaderContainer>
+      <FavButtonContainer onClick={onClick}>
+        <FavButton open={open} />
+      </FavButtonContainer>
       <Search />
-      <Button onClick={onClick} open={open} />
+      <ModeSelect />
     </HeaderContainer>
   );
 }

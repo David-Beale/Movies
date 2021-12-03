@@ -9,6 +9,7 @@ import type { AppThunk, RootState } from "./store";
 interface MoviesState {
   error: boolean;
   finished: boolean;
+  mode: number;
 }
 export interface Movie {
   id: number;
@@ -23,20 +24,23 @@ export interface Movie {
 
 const moviesAdapter = createEntityAdapter<Movie>();
 
-enum Mode {
-  popular,
-  search,
+export enum Mode {
+  Popular,
+  Search,
+  "Now Playing",
+  "Top Rated",
+  Upcoming,
 }
 
 let page = 1;
 let loading = false;
 let query = "";
-let mode = Mode.popular;
 let fetchId: number = 0;
 
 const initialState: MoviesState = {
   error: false,
   finished: false,
+  mode: Mode.Popular,
 };
 
 const movies = createSlice({
@@ -56,21 +60,25 @@ const movies = createSlice({
       state.finished = false;
       moviesAdapter.removeAll(state);
     },
+    setMode(state, action: PayloadAction<number>) {
+      state.mode = action.payload;
+    },
   },
 });
 
-export const { addMovies, setError, setFinished, clearMovies } = movies.actions;
+export const { addMovies, setError, setFinished, clearMovies, setMode } =
+  movies.actions;
 
 export const { selectById: selectMovieById, selectIds: selectMovieIds } =
   moviesAdapter.getSelectors((state: RootState) => state.movies);
 
 export default movies.reducer;
 
-export const fetchMovies = (): AppThunk => async (dispatch) => {
+export const fetchMovies = (): AppThunk => async (dispatch, getState) => {
   if (loading) return;
   loading = true;
   const localId = createLocalId();
-  const { body, error } = await fetchMovieRouter();
+  const { body, error } = await fetchMovieRouter(getState().movies.mode);
   if (!checkLocalId(localId)) return;
   loading = false;
   if (error) return dispatch(setError());
@@ -82,34 +90,31 @@ export const fetchMovies = (): AppThunk => async (dispatch) => {
   if (movies) dispatch(addMovies(movies));
 };
 
-const fetchMovieRouter = async () => {
+const fetchMovieRouter = async (mode: number) => {
   switch (mode) {
-    case Mode.popular:
+    case Mode.Popular:
       return await MovieApi.fetchMovies(page);
-    case Mode.search:
+    case Mode.Search:
       return await MovieApi.fetchSearch(query, page);
+    case Mode["Now Playing"]:
+      return await MovieApi.fetchNowPlaying(page);
+    case Mode["Top Rated"]:
+      return await MovieApi.fetchTopRated(page);
+    case Mode.Upcoming:
+      return await MovieApi.fetchUpcoming(page);
     default:
       return { error: true };
   }
 };
 
-export const setSearchQuery =
-  (q: string): AppThunk =>
+export const selectNewMode =
+  (mode: number, q: string = ""): AppThunk =>
   async (dispatch) => {
     page = 1;
     loading = false;
     query = q;
-    mode = Mode.search;
-    dispatch(clearMovies());
-    dispatch(fetchMovies());
-  };
-export const closeSearch =
-  (q: string): AppThunk =>
-  async (dispatch) => {
-    page = 1;
-    loading = false;
-    query = "";
-    mode = Mode.popular;
+
+    dispatch(setMode(mode));
     dispatch(clearMovies());
     dispatch(fetchMovies());
   };

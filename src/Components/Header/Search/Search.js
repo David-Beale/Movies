@@ -7,7 +7,7 @@ import {
   StyledCancelIcon,
 } from "./SearchStyle";
 import { useAppDispatch } from "../../../redux/hooks";
-import { closeSearch, setSearchQuery } from "../../../redux/movies";
+import { Mode, selectNewMode } from "../../../redux/movies";
 
 export default function Search() {
   const dispatch = useAppDispatch();
@@ -16,14 +16,14 @@ export default function Search() {
 
   const onCloseSearch = () => {
     setSearchText("");
-    dispatch(closeSearch());
+    dispatch(selectNewMode(Mode.Popular));
   };
 
   const requestSearch = useMemo(
     () =>
       debounce(async (query) => {
         if (!query) return;
-        dispatch(setSearchQuery(query));
+        dispatch(selectNewMode(Mode.Search, query));
       }, 300),
     [dispatch]
   );
@@ -39,7 +39,7 @@ export default function Search() {
       requestSearch(e.target.value);
       setSearchText(e.target.value);
       if (!e.target.value) {
-        dispatch(closeSearch());
+        dispatch(selectNewMode(Mode.Popular));
       }
     },
     [requestSearch, dispatch]
@@ -51,7 +51,7 @@ export default function Search() {
       <Input
         type="text"
         id="search"
-        placeholder={"Search for movies..."}
+        placeholder="Search for movies..."
         value={searchText}
         onChange={onSearchTextChange}
         autoComplete="off"

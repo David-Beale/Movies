@@ -20,19 +20,20 @@ export const HeaderContainer = styled.header`
   background-color: #ecf0f3;
 `;
 
-export const Button = styled(StarIcon).attrs(() => ({
-  fontSize: "large",
+export const FavButtonContainer = styled.div`
+  position: absolute;
+  left: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 8px 8px 8px ${({ theme }) => theme.topShadow},
+    -8px -8px 8px ${({ theme }) => theme.bottomShadow};
+  -webkit-tap-highlight-color: transparent;
+`;
+export const FavButton = styled(StarIcon).attrs(() => ({
+  style: { fontSize: 45 },
 }))<Props["button"]>`
   color: ${({ theme }) => theme.primary};
-  position: absolute;
-  top: 14px;
-  left: 10px;
-  width: 36px;
-  height: 36px;
-  border: 3px solid ${({ theme }) => theme.primary};
-  border-radius: 50%;
+  padding: 10px;
   transform: rotate(${({ open }) => (open ? 360 : 0)}deg);
   transition: all 0.75s !important;
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
 `;
